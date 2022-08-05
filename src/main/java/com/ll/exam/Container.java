@@ -14,8 +14,8 @@ public class Container {
 
 
     static { //클래스가 로딩될 때 딱 한번만 만든다.
-        articleController = (ArticleController) Ut.cls.newObj(ArticleController.class, null);
-        homeController = (HomeController) Ut.cls.newObj(HomeController.class, null);
+        articleController = Ut.cls.newObj(ArticleController.class, null);
+        homeController = Ut.cls.newObj(HomeController.class, null);
 
     }
 
