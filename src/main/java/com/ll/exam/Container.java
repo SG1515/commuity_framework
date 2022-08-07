@@ -28,12 +28,7 @@ public class Container {
         resolveDependenciesAllComponents();
     }
 
-    private static void scanRepositories() {
-        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
-        for (Class<?> cls : ref.getTypesAnnotatedWith(Repository.class)) {
-            objects.put(cls, Ut.cls.newObj(cls, null));
-        }
-    }
+
     private static void resolveDependenciesAllComponents() {
         for (Class cls : objects.keySet()) {
             Object o = objects.get(cls);
@@ -56,12 +51,19 @@ public class Container {
 
                     try {
                         field.set(o, dependency);
+                        // o.fieldName = dependency;
                     } catch (IllegalAccessException e) {
 
                     }
                 });
     }
 
+    private static void scanRepositories() {
+        Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
+        for (Class<?> cls : ref.getTypesAnnotatedWith(Repository.class)) {
+            objects.put(cls, Ut.cls.newObj(cls, null));
+        }
+    }
     private static void scanServices() {
         Reflections ref = new Reflections(App.BASE_PACKAGE_PATH);
         for (Class<?> cls : ref.getTypesAnnotatedWith(Service.class)) {
