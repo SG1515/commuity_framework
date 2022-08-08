@@ -1,6 +1,5 @@
 package com.ll.exam;
 
-import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.mymap.MyMap;
 import com.ll.exam.mymap.SecSql;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,10 +15,8 @@ import java.util.Map;
 import java.util.stream.IntStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS;
 
-
-@TestInstance(PER_CLASS)
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MyMapTest {
     private MyMap myMap;
 
@@ -62,7 +59,7 @@ class MyMapTest {
 
     @BeforeAll
     public void beforeAll() {
-        myMap = new MyMap("localhost", "root", "12341234", "my_map");
+        myMap = new MyMap("localhost", "root", "", "my_map");
         // 개발모드를 켠다.
         // 개발모드를 켜면 실행되는 쿼리가 콘솔에 출력됨
         myMap.setDevMode(true);
